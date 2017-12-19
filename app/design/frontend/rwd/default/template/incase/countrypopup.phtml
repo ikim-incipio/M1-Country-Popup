@@ -1,0 +1,62 @@
+<?php
+// load country popup collection and dump it in countries associative array
+$collection = Mage::getModel('incase_countrypopup/country')->getCollection();
+$countries = array();
+foreach ($collection as $country){
+	$countries[$country->getCode()] = $country->renderHtml();
+}
+?>
+<!-- Country Popup -->
+<script>
+jQuery(document).ready(function() {
+	// array of loaded countries
+	var countries = <?php echo json_encode($countries) ?>;
+
+	// html placeholders
+	var popup, container, overlay;
+	popup = jQuery('.inc-country-popup');
+	container = jQuery('.inc-country-popup-container');
+	overlay = jQuery('.inc-country-popup-overlay');
+
+	// if country is not stored in local storage then ajax to geo-ip php and render
+	if(localStorage.getItem('visitorCountry') === null) {
+	    jQuery.ajax
+	    ({
+	        type: "POST",
+	        url: "/geo-ip",
+	        data: {},
+	        cache: false,
+	        success: function(html) {
+	        	/* html result contains javascript var country = CODE */
+	            jQuery('.inc-data-dump').html(html);
+	            /* render popup html */
+	            renderCountryPopup(country);
+	            /* save country code to local storage */
+	            localStorage.setItem('visitorCountry',country);
+	        }
+	    });
+	} else {
+		renderCountryPopup(localStorage.getItem('visitorCountry'));
+	}
+
+	function renderCountryPopup(country) {
+		if (countries[country]){
+			//console.log('country after if: '+country);
+			container.html(countries[country]);
+
+			popup.addClass('active');
+			setTimeout(function() {
+			    container.addClass('active');
+			}, 250);
+
+			overlay.on('click', function() {
+			    container.removeClass('active');
+			    setTimeout(function() {
+			        popup.removeClass('active');
+			    }, 250);
+			});
+		}
+	}
+});
+</script>
+<!-- End Country Popup -->

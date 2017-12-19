@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- 
+	@author Isaac Kim
+	@12-18-2017
+-->
+<layout version="0.0.4">
+	<default translate="label">
+		<reference name="header">
+			<block type="core/template" name="country_popup" as="country_popup" template="incase/countrypopup.phtml" />
+		</reference>
+	</default>
+</layout>

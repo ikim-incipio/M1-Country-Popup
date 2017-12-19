@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!-- 
+	@author Isaac Kim
+	@12-14-2017
+-->
+<config>
+	<modules>
+		<Incase_CountryPopup>
+			<version>0.0.4</version>
+		</Incase_CountryPopup>
+	</modules>
+
+	<global>
+		<helpers>
+			<incase_countrypopup>
+				<class>Incase_CountryPopup_Helper</class>
+			</incase_countrypopup>
+		</helpers>
+		<blocks>
+			<incase_countrypopup>
+				<class>Incase_CountryPopup_Block</class>
+			</incase_countrypopup>
+		</blocks>
+		<models>
+			<incase_countrypopup>
+				<class>Incase_CountryPopup_Model</class>
+				<resourceModel>incase_countrypopup_resource</resourceModel>
+			</incase_countrypopup>
+			<incase_countrypopup_resource>
+				<class>Incase_CountryPopup_Model_Resource</class>
+				<entities>
+					<country>
+						<table>incase_countrypopup_country</table>
+					</country>
+				</entities>
+			</incase_countrypopup_resource>
+		</models>
+		<resources>
+			<incase_countrypopup_setup>
+				<setup>
+					<module>Incase_CountryPopup</module>
+				</setup>
+			</incase_countrypopup_setup>
+		</resources>
+	</global>
+
+	<frontend>
+		<layout>
+			<updates>
+				<incase_countrypopup>
+					<file>incase/countrypopup.xml</file>
+				</incase_countrypopup>
+			</updates>
+		</layout>
+	</frontend>
+
+	<admin>
+		<routers>
+			<incase_countrypopup>
+				<use>admin</use>
+				<args>
+					<module>Incase_CountryPopup</module>
+					<frontName>incase_countrypopup</frontName>
+				</args>
+			</incase_countrypopup>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<menu>
+			<cms>
+				<children>
+					<incase_countrypopup translate="title" module="incase_countrypopup">
+						<title>Country Popup</title>
+						<action>incase_countrypopup/adminhtml_index</action>
+						<sort_order>900</sort_order>
+					</incase_countrypopup>
+				</children>
+			</cms>
+		</menu>
+	</adminhtml>
+</config>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- 
+	@author Isaac Kim
+	@12-14-2017
+-->
+<config>
+    <modules>
+        <Incase_CountryPopup>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+            	<Mage_Page />
+            </depends>
+        </Incase_CountryPopup>
+    </modules>
+</config>
